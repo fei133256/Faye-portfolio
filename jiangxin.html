@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>酱心臻礼 2026 春节礼盒 — Faye Portfolio</title>
+    <meta name="description" content="酱心臻礼 2026 春节礼盒包装设计案例">
+    <style>
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Light'), local('OPPOSans L');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Regular'), local('OPPOSans R');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Medium'), local('OPPOSans M');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Bold'), local('OPPOSans B');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Heavy'), local('OPPOSans H');
+            font-weight: 900;
+        }
+
+        :root {
+            --sage: #B1CAC4;
+            --sage-light: #D4E2DE;
+            --cream: #F5E6C2;
+            --cream-light: #FAF1D9;
+            --gold: #B59F22;
+            --gold-light: #CBB544;
+            --olive: #394118;
+            --olive-light: #4F5A28;
+            --bg: #FAF8F3;
+            --bg-alt: #F2EFE8;
+            --font: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --maxw: 1320px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--olive);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 1.25rem;
+            background: rgba(250, 248, 243, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(57, 65, 24, 0.08);
+            transition: padding 0.35s ease;
+        }
+
+        .nav-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo img {
+            width: 28px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-back {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--olive);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .project-hero {
+            padding: 7rem 1.25rem 3rem;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(245, 230, 194, 0.55), transparent 42%),
+                radial-gradient(circle at 12% 86%, rgba(177, 202, 196, 0.22), transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-visual {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(57, 65, 24, 0.10);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--olive);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--olive-light);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Content */
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--olive);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+
+        .section-title-en {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--olive-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.85;
+        }
+
+        .section-body {
+            color: var(--olive);
+            line-height: 1.9;
+        }
+
+        .section-body p {
+            margin-bottom: 1.1rem;
+        }
+
+        .section-body strong {
+            font-weight: 600;
+            color: var(--olive);
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-list li {
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .highlight-box {
+            background: var(--cream-light);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: var(--olive);
+            line-height: 1.85;
+        }
+
+        /* Single image gallery */
+        .manual-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .gallery-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .manual-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .manual-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 36px rgba(57, 65, 24, 0.08);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--olive);
+            color: var(--cream-light);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: rgba(245, 230, 194, 0.55);
+            letter-spacing: 0.06em;
+        }
+
+        .footer a {
+            color: var(--gold-light);
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--cream);
+        }
+
+        @media (min-width: 768px) {
+            .project-hero {
+                padding: 9rem 2rem 4rem;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 4rem;
+            }
+
+            .content {
+                padding: 5rem 2rem 7rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" aria-label="Project navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="返回首页">
+                <img src="assets/logo.png" alt="Faye" width="28">
+            </a>
+            <a href="index.html" class="nav-back">
+                <span aria-hidden="true">&larr;</span> 返回首页
+            </a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-inner">
+            <div class="hero-visual">
+                <img src="assets/work-4.jpg" alt="酱心臻礼 2026 春节礼盒包装设计展示">
+            </div>
+            <div class="hero-meta">
+                <span class="hero-label">Packaging Design</span>
+                <h1 class="hero-title">酱心臻礼</h1>
+                <p class="hero-subtitle">2026 年限定坚果酱新春礼品礼盒。以纯粹「酱」心，礼遇新年，用年轻化、简约的几何图案重构新春元素。</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="section" aria-labelledby="concept-title">
+            <h2 id="concept-title" class="section-title">
+                设计内核
+                <span class="section-title-en">Design Concept</span>
+            </h2>
+            <div class="section-body">
+                <p>本包装为 2026 年限定坚果酱新春礼品礼盒，以纯粹「酱」心，礼遇新年作为设计内核。整体视觉延续系列产品统一包装风格，打造兼具国风氛围感与精致质感的新年伴手礼。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="visual-title">
+            <h2 id="visual-title" class="section-title">
+                视觉策略
+                <span class="section-title-en">Visual Strategy</span>
+            </h2>
+            <div class="section-body">
+                <p>主视觉以年份数字 2026 作为几何拼贴造型，区块内融入鞭炮、灯笼、元宝等新春喜庆纹样与各类坚果原料图案，兼顾节日吉祥寓意与产品属性。抛弃繁杂老旧的传统礼盒纹样，用年轻化、简约的几何图案重构新春元素。</p>
+                <p>整体采用朱红色特种纸盒身，搭配双色烫金、浮雕工艺，红金国风配色烘托年味质感，外观延续坚果酱产品整套视觉体系。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="scenario-title">
+            <h2 id="scenario-title" class="section-title">
+                适用场景
+                <span class="section-title-en">Usage Scenario</span>
+            </h2>
+            <div class="section-body">
+                <p>该礼盒既适合日常亲友佳节馈赠，也能够用作商务伴手礼。画面把食材属性、新年祝福、品牌理念融为一体，用新潮的视觉语言诠释传统年礼文化。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="essence-title">
+            <h2 id="essence-title" class="section-title">
+                设计主旨
+                <span class="section-title-en">Design Essence</span>
+            </h2>
+            <div class="highlight-box">
+                <p>“以匠心熬制坚果酱料，以臻心奉上新春好礼。”</p>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="manual-gallery" aria-labelledby="manual-title">
+        <p id="manual-title" class="gallery-title">Packaging Visual</p>
+        <div class="manual-grid">
+            <img src="assets/work-4.jpg" alt="酱心臻礼 2026 春节礼盒" loading="lazy">
+            <img src="assets/jiangxin/xinnian-07.jpg" alt="酱心臻礼 2026 春节礼盒包装细节" loading="lazy">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Faye. <a href="index.html">返回首页</a></p>
+    </footer>
+
+</body>
+</html>

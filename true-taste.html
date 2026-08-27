@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寻味密码 TrueTaste — Faye Portfolio</title>
+    <meta name="description" content="寻味密码（TrueTaste）高品质佐餐品牌视觉与包装设计案例">
+    <style>
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Light'), local('OPPOSans L');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Regular'), local('OPPOSans R');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Medium'), local('OPPOSans M');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Bold'), local('OPPOSans B');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Heavy'), local('OPPOSans H');
+            font-weight: 900;
+        }
+
+        :root {
+            --sage: #B1CAC4;
+            --sage-light: #D4E2DE;
+            --cream: #F5E6C2;
+            --cream-light: #FAF1D9;
+            --gold: #B59F22;
+            --gold-light: #CBB544;
+            --olive: #394118;
+            --olive-light: #4F5A28;
+            --bg: #FAF8F3;
+            --bg-alt: #F2EFE8;
+            --font: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --maxw: 1320px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--olive);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 1.25rem;
+            background: rgba(250, 248, 243, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(57, 65, 24, 0.08);
+            transition: padding 0.35s ease;
+        }
+
+        .nav-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo img {
+            width: 28px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-back {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--olive);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .project-hero {
+            padding: 7rem 1.25rem 3rem;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(245, 230, 194, 0.55), transparent 42%),
+                radial-gradient(circle at 12% 86%, rgba(177, 202, 196, 0.22), transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-visual {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(57, 65, 24, 0.10);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--olive);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--olive-light);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Content */
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--olive);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+
+        .section-title-en {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--olive-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.85;
+        }
+
+        .section-body {
+            color: var(--olive);
+            line-height: 1.9;
+        }
+
+        .section-body p {
+            margin-bottom: 1.1rem;
+        }
+
+        .section-body strong {
+            font-weight: 600;
+            color: var(--olive);
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-list li {
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .highlight-box {
+            background: var(--cream-light);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: var(--olive);
+            line-height: 1.85;
+        }
+
+        /* Visual gallery */
+        .visual-gallery {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 1.5rem 6rem;
+        }
+
+        .gallery-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            box-shadow: 0 10px 36px rgba(57, 65, 24, 0.08);
+        }
+
+        /* Manual image gallery */
+        .manual-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .manual-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .manual-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 36px rgba(57, 65, 24, 0.08);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--olive);
+            color: var(--cream-light);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: rgba(245, 230, 194, 0.55);
+            letter-spacing: 0.06em;
+        }
+
+        .footer a {
+            color: var(--gold-light);
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--cream);
+        }
+
+        @media (min-width: 768px) {
+            .project-hero {
+                padding: 9rem 2rem 4rem;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 4rem;
+            }
+
+            .content {
+                padding: 5rem 2rem 7rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.25rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" aria-label="Project navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="返回首页">
+                <img src="assets/logo.png" alt="Faye" width="28">
+            </a>
+            <a href="index.html" class="nav-back">
+                <span aria-hidden="true">&larr;</span> 返回首页
+            </a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-inner">
+            <div class="hero-visual">
+                <img src="assets/work-1.jpg" alt="寻味密码——酱料系列包装设计展示">
+            </div>
+            <div class="hero-meta">
+                <span class="hero-label">Brand &amp; Packaging Design</span>
+                <h1 class="hero-title">寻味密码 <span style="font-weight:400; color:var(--olive-light)">TrueTaste</span></h1>
+                <p class="hero-subtitle">高品质佐餐品牌品牌视觉与包装设计。围绕“寻食材之味，调生活滋味”的品牌理念，为高品质佐餐食品打造从品牌 VI 系统到系列化包装的完整视觉体验，传递食材本真与生活美学。</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="section" aria-labelledby="context-title">
+            <h2 id="context-title" class="section-title">
+                品牌概况与目标受众
+                <span class="section-title-en">Brand Context</span>
+            </h2>
+            <div class="section-body">
+                <ul class="info-list">
+                    <li><strong>商业背景：</strong>寻味密码致力于为消费者提供真材实料、0添加的高品质佐餐食品，强调食材本身的自然风味与健康价值。</li>
+                    <li><strong>核心受众：</strong>瞄准追求生活品质的都市白领与新生代父母。他们不仅关注食品的长期健康价值，也追求高效、精致的餐桌仪式感。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="challenge-title">
+            <h2 id="challenge-title" class="section-title">
+                设计目标
+                <span class="section-title-en">Design Challenge</span>
+            </h2>
+            <p class="section-lead">打破传统调味品陈旧、刻板的视觉印象。</p>
+            <div class="section-body">
+                <p>需要建立一个温暖、真诚且具备现代审美的食品品牌形象。同时，包装设计需在货架上保持统一的家族感，又能清晰区分品牌旗下的“晨间能量”、“午后灵感”、“暮色滋味”三大用餐场景产品线。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="strategy-title">
+            <h2 id="strategy-title" class="section-title">
+                核心视觉策略
+                <span class="section-title-en">Visual Strategy</span>
+            </h2>
+            <p class="section-lead">以孟菲斯风格为灵感，用几何与色彩讲述食材故事。</p>
+            <div class="section-body">
+                <p><strong>包装概念：</strong>视觉语言源自孟菲斯风格，为体现食物的本真，设计摒弃了繁杂的装饰，将产品原料提取为抽象、简洁的几何化图形，并巧妙搭配条纹、格子元素，增加视觉上的趣味性和层次感。色彩上，直接从食材原色中提取柔和、明亮的色调，通过同色系或撞色的搭配营造清新感，使整体视觉富有生机与活力，真正让产品成为用户餐桌上“微小的生活滋味调节器”。</p>
+                <p><strong>视觉呈现：</strong>延伸设计了品牌视觉手册、品牌卡片等关联物料。在物料的最终视觉呈现与展示上，延续孟菲斯风格的同时注重留白，以最克制的方式最大化凸显包装本身的设计感。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="manual-gallery" aria-labelledby="manual-title">
+        <p id="manual-title" class="gallery-title">Brand Manual</p>
+        <div class="manual-grid">
+            <img src="assets/manual/manual-01.jpg" alt="品牌手册 第 1 页" loading="lazy">
+            <img src="assets/manual/manual-02.jpg" alt="品牌手册 第 2 页" loading="lazy">
+            <img src="assets/manual/manual-03.jpg" alt="品牌手册 第 3 页" loading="lazy">
+            <img src="assets/manual/manual-04.jpg" alt="品牌手册 第 4 页" loading="lazy">
+            <img src="assets/manual/manual-05.jpg" alt="品牌手册 第 5 页" loading="lazy">
+            <img src="assets/manual/manual-06.jpg" alt="品牌手册 第 6 页" loading="lazy">
+            <img src="assets/manual/manual-07.jpg" alt="品牌手册 第 7 页" loading="lazy">
+            <img src="assets/manual/manual-08.jpg" alt="品牌手册 第 8 页" loading="lazy">
+            <img src="assets/manual/manual-09.jpg" alt="品牌手册 第 9 页" loading="lazy">
+            <img src="assets/manual/manual-10.jpg" alt="品牌手册 第 10 页" loading="lazy">
+            <img src="assets/manual/manual-11.jpg" alt="品牌手册 第 11 页" loading="lazy">
+            <img src="assets/manual/manual-12.jpg" alt="品牌手册 第 12 页" loading="lazy">
+            <img src="assets/manual/manual-13.jpg" alt="品牌手册 第 13 页" loading="lazy">
+            <img src="assets/manual/manual-14.jpg" alt="品牌手册 第 14 页" loading="lazy">
+            <img src="assets/manual/manual-15.jpg" alt="品牌手册 第 15 页" loading="lazy">
+            <img src="assets/manual/manual-16.jpg" alt="品牌手册 第 16 页" loading="lazy">
+            <img src="assets/manual/manual-17.jpg" alt="品牌手册 第 17 页" loading="lazy">
+            <img src="assets/manual/manual-18.jpg" alt="品牌手册 第 18 页" loading="lazy">
+            <img src="assets/manual/manual-19.jpg" alt="品牌手册 第 19 页" loading="lazy">
+            <img src="assets/manual/manual-20.jpg" alt="品牌手册 第 20 页" loading="lazy">
+            <img src="assets/manual/manual-21.jpg" alt="品牌手册 第 21 页" loading="lazy">
+            <img src="assets/manual/manual-22.jpg" alt="品牌手册 第 22 页" loading="lazy">
+            <img src="assets/manual/manual-23.jpg" alt="品牌手册 第 23 页" loading="lazy">
+            <img src="assets/manual/manual-24.jpg" alt="品牌手册 第 24 页" loading="lazy">
+            <img src="assets/manual/manual-25.jpg" alt="品牌手册 第 25 页" loading="lazy">
+            <img src="assets/manual/manual-26.jpg" alt="品牌手册 第 26 页" loading="lazy">
+            <img src="assets/manual/manual-27.jpg" alt="品牌手册 第 27 页" loading="lazy">
+            <img src="assets/manual/manual-28.jpg" alt="品牌手册 第 28 页" loading="lazy">
+            <img src="assets/manual/manual-29.jpg" alt="品牌手册 第 29 页" loading="lazy">
+            <img src="assets/manual/manual-30.jpg" alt="品牌手册 第 30 页" loading="lazy">
+            <img src="assets/manual/manual-31.jpg" alt="品牌手册 第 31 页" loading="lazy">
+            <img src="assets/manual/manual-32.jpg" alt="品牌手册 第 32 页" loading="lazy">
+            <img src="assets/manual/manual-33.jpg" alt="品牌手册 第 33 页" loading="lazy">
+        </div>
+    </section>
+    <section class="visual-gallery" aria-label="相关产品视觉">
+        <p class="gallery-title">Related Visuals</p>
+        <div class="gallery-grid">
+            <img src="assets/work-9.jpg" alt="寻味密码 大果粒蓝莓酱">
+            <img src="assets/work-10.jpg" alt="寻味密码 颗粒开心果酱">
+            <img src="assets/work-11.jpg" alt="寻味密码 玫瑰腰果酱">
+            <img src="assets/work-12.jpg" alt="寻味密码 粗研扁桃仁酱">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Faye. <a href="index.html">返回首页</a></p>
+    </footer>
+
+</body>
+</html>

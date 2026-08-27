@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faye - Portfolio</title>
+    <style id="theme-vars">
+/* ===== Natural Healing Color System ===== */
+/* Inspired by: 自然疗愈 color palette */
+/* Sage Green #B1CAC4 | Cream #F5E6C2 | Mustard Gold #B59F22 | Deep Olive #394118 */
+
+:root {
+  /* ===== Core Palette ===== */
+  --nh-sage: #B1CAC4;
+  --nh-sage-light: #D4E2DE;
+  --nh-sage-lighter: #E8F0ED;
+  --nh-cream: #F5E6C2;
+  --nh-cream-light: #FAF1D9;
+  --nh-cream-dark: #EDD9A8;
+  --nh-gold: #B59F22;
+  --nh-gold-light: #CBB544;
+  --nh-gold-dark: #9A8516;
+  --nh-olive: #394118;
+  --nh-olive-light: #4F5A28;
+  --nh-olive-dark: #2A300F;
+
+  /* ===== Semantic Tokens ===== */
+  --nh-background: #FAF8F3;
+  --nh-foreground: #2A300F;
+  --nh-card: #FFFFFF;
+  --nh-card-foreground: #2A300F;
+  --nh-muted: #F2EFE8;
+  --nh-muted-foreground: #7A8052;
+  --nh-popover: #FFFFFF;
+  --nh-popover-foreground: #2A300F;
+  --nh-primary: #394118;
+  --nh-primary-foreground: #FAF8F3;
+  --nh-secondary: #B1CAC4;
+  --nh-secondary-foreground: #2A300F;
+  --nh-accent: #B59F22;
+  --nh-accent-foreground: #FAF8F3;
+  --nh-destructive: #C44A3A;
+  --nh-destructive-foreground: #FAF8F3;
+  --nh-border: rgba(57, 65, 24, 0.10);
+  --nh-input: rgba(57, 65, 24, 0.15);
+  --nh-ring: rgba(57, 65, 24, 0.25);
+
+  /* ===== Extended Palette ===== */
+  --nh-background-alt: #F2EFE8;
+  --nh-surface: #FFFFFF;
+  --nh-surface-warm: #F5E6C2;
+  --nh-surface-sage: #B1CAC4;
+  --nh-surface-deep: #394118;
+  --nh-foreground-medium: #4F5A28;
+  --nh-foreground-light: #A0A678;
+  --nh-foreground-inverse: #FAF8F3;
+  --nh-primary-hover: #4F5A28;
+  --nh-accent-hover: #CBB544;
+  --nh-border-medium: rgba(57, 65, 24, 0.15);
+  --nh-border-strong: rgba(57, 65, 24, 0.25);
+
+  /* ===== Radius ===== */
+  --nh-radius-sm: 4px;
+  --nh-radius-md: 8px;
+  --nh-radius-lg: 12px;
+  --nh-radius-xl: 16px;
+  --nh-radius-full: 9999px;
+
+  /* ===== Shadows ===== */
+  --nh-shadow-sm: 0 2px 12px rgba(57, 65, 24, 0.04);
+  --nh-shadow-md: 0 8px 32px rgba(57, 65, 24, 0.04);
+  --nh-shadow-lg: 0 20px 60px rgba(57, 65, 24, 0.05);
+
+  /* ===== Typography ===== */
+  --nh-font-primary: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --nh-font-display: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --nh-font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+
+  --nh-text-display: clamp(3.5rem, 10vw, 8rem);
+  --nh-text-h1: clamp(2rem, 4vw, 3rem);
+  --nh-text-h2: clamp(1.5rem, 3vw, 2.2rem);
+  --nh-text-h3: clamp(1.2rem, 2vw, 1.6rem);
+  --nh-text-body: 1rem;
+  --nh-text-small: 0.875rem;
+  --nh-text-caption: 0.75rem;
+
+  --nh-leading-tight: 1.1;
+  --nh-leading-snug: 1.4;
+  --nh-leading-normal: 1.7;
+  --nh-leading-relaxed: 1.9;
+
+  --nh-tracking-tight: -0.02em;
+  --nh-tracking-normal: 0;
+  --nh-tracking-wide: 0.05em;
+  --nh-tracking-wider: 0.1em;
+  --nh-tracking-widest: 0.2em;
+}
+
+/* ===== Dark Mode Variant ===== */
+.dark {
+  --nh-background: #2A300F;
+  --nh-foreground: #FAF8F3;
+  --nh-card: #394118;
+  --nh-card-foreground: #FAF8F3;
+  --nh-muted: #1F2410;
+  --nh-muted-foreground: #B0A888;
+  --nh-popover: #394118;
+  --nh-popover-foreground: #FAF8F3;
+  --nh-primary: #B1CAC4;
+  --nh-primary-foreground: #2A300F;
+  --nh-secondary: #4F5A28;
+  --nh-secondary-foreground: #FAF8F3;
+  --nh-accent: #CBB544;
+  --nh-accent-foreground: #2A300F;
+  --nh-destructive: #E06B5A;
+  --nh-destructive-foreground: #FAF8F3;
+  --nh-border: rgba(248, 245, 235, 0.10);
+  --nh-input: rgba(248, 245, 235, 0.15);
+  --nh-ring: rgba(248, 245, 235, 0.25);
+
+  --nh-background-alt: #1F2410;
+  --nh-surface: #394118;
+  --nh-surface-warm: #4F5A28;
+  --nh-surface-sage: #5A7068;
+  --nh-surface-deep: #1F2410;
+  --nh-foreground-medium: #E8E0CC;
+  --nh-foreground-light: #8A8268;
+  --nh-foreground-inverse: #2A300F;
+  --nh-primary-hover: #D4E2DE;
+  --nh-accent-hover: #F5E6C2;
+  --nh-border-medium: rgba(248, 245, 235, 0.15);
+  --nh-border-strong: rgba(248, 245, 235, 0.25);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+      @theme inline {
+        --color-background: var(--nh-background);
+        --color-foreground: var(--nh-foreground);
+        --color-card: var(--nh-card);
+        --color-card-foreground: var(--nh-card-foreground);
+        --color-popover: var(--nh-popover);
+        --color-popover-foreground: var(--nh-popover-foreground);
+        --color-primary: var(--nh-primary);
+        --color-primary-foreground: var(--nh-primary-foreground);
+        --color-secondary: var(--nh-secondary);
+        --color-secondary-foreground: var(--nh-secondary-foreground);
+        --color-muted: var(--nh-muted);
+        --color-muted-foreground: var(--nh-muted-foreground);
+        --color-accent: var(--nh-accent);
+        --color-accent-foreground: var(--nh-accent-foreground);
+        --color-destructive: var(--nh-destructive);
+        --color-destructive-foreground: var(--nh-destructive-foreground);
+        --color-border: var(--nh-border);
+        --color-input: var(--nh-input);
+        --color-ring: var(--nh-ring);
+        --radius-sm: var(--nh-radius-sm);
+        --radius-md: var(--nh-radius-md);
+        --radius-lg: var(--nh-radius-lg);
+        --radius-xl: var(--nh-radius-xl);
+      }
+      @layer base {
+        body { background: var(--nh-background); color: var(--nh-foreground); }
+        td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+        th { @apply whitespace-nowrap; }
+      }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--nh-background); }
+      .text-background { color: var(--nh-background); }
+      .border-background { border-color: var(--nh-background); }
+      .ring-background { --tw-ring-color: var(--nh-background); }
+      .bg-foreground { background-color: var(--nh-foreground); }
+      .text-foreground { color: var(--nh-foreground); }
+      .border-foreground { border-color: var(--nh-foreground); }
+      .ring-foreground { --tw-ring-color: var(--nh-foreground); }
+      .bg-card { background-color: var(--nh-card); }
+      .text-card { color: var(--nh-card); }
+      .border-card { border-color: var(--nh-card); }
+      .ring-card { --tw-ring-color: var(--nh-card); }
+      .bg-card-foreground { background-color: var(--nh-card-foreground); }
+      .text-card-foreground { color: var(--nh-card-foreground); }
+      .border-card-foreground { border-color: var(--nh-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--nh-card-foreground); }
+      .bg-popover { background-color: var(--nh-popover); }
+      .text-popover { color: var(--nh-popover); }
+      .border-popover { border-color: var(--nh-popover); }
+      .ring-popover { --tw-ring-color: var(--nh-popover); }
+      .bg-popover-foreground { background-color: var(--nh-popover-foreground); }
+      .text-popover-foreground { color: var(--nh-popover-foreground); }
+      .border-popover-foreground { border-color: var(--nh-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--nh-popover-foreground); }
+      .bg-primary { background-color: var(--nh-primary); }
+      .text-primary { color: var(--nh-primary); }
+      .border-primary { border-color: var(--nh-primary); }
+      .ring-primary { --tw-ring-color: var(--nh-primary); }
+      .bg-primary-foreground { background-color: var(--nh-primary-foreground); }
+      .text-primary-foreground { color: var(--nh-primary-foreground); }
+      .border-primary-foreground { border-color: var(--nh-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--nh-primary-foreground); }
+      .bg-secondary { background-color: var(--nh-secondary); }
+      .text-secondary { color: var(--nh-secondary); }
+      .border-secondary { border-color: var(--nh-secondary); }
+      .ring-secondary { --tw-ring-color: var(--nh-secondary); }
+      .bg-secondary-foreground { background-color: var(--nh-secondary-foreground); }
+      .text-secondary-foreground { color: var(--nh-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--nh-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--nh-secondary-foreground); }
+      .bg-muted { background-color: var(--nh-muted); }
+      .text-muted { color: var(--nh-muted); }
+      .border-muted { border-color: var(--nh-muted); }
+      .ring-muted { --tw-ring-color: var(--nh-muted); }
+      .bg-muted-foreground { background-color: var(--nh-muted-foreground); }
+      .text-muted-foreground { color: var(--nh-muted-foreground); }
+      .border-muted-foreground { border-color: var(--nh-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--nh-muted-foreground); }
+      .bg-accent { background-color: var(--nh-accent); }
+      .text-accent { color: var(--nh-accent); }
+      .border-accent { border-color: var(--nh-accent); }
+      .ring-accent { --tw-ring-color: var(--nh-accent); }
+      .bg-accent-foreground { background-color: var(--nh-accent-foreground); }
+      .text-accent-foreground { color: var(--nh-accent-foreground); }
+      .border-accent-foreground { border-color: var(--nh-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--nh-accent-foreground); }
+      .bg-destructive { background-color: var(--nh-destructive); }
+      .text-destructive { color: var(--nh-destructive); }
+      .border-destructive { border-color: var(--nh-destructive); }
+      .ring-destructive { --tw-ring-color: var(--nh-destructive); }
+      .bg-destructive-foreground { background-color: var(--nh-destructive-foreground); }
+      .text-destructive-foreground { color: var(--nh-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--nh-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--nh-destructive-foreground); }
+      .border-border { border-color: var(--nh-border); }
+      .bg-border { background-color: var(--nh-border); }
+      .text-border { color: var(--nh-border); }
+      .ring-border { --tw-ring-color: var(--nh-border); }
+      .bg-input { background-color: var(--nh-input); }
+      .text-input { color: var(--nh-input); }
+      .border-input { border-color: var(--nh-input); }
+      .ring-input { --tw-ring-color: var(--nh-input); }
+      .bg-ring { background-color: var(--nh-ring); }
+      .text-ring { color: var(--nh-ring); }
+      .border-ring { border-color: var(--nh-ring); }
+      .ring-ring { --tw-ring-color: var(--nh-ring); }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== Navigation (Variant 2: Minimal Grid) ===================== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" aria-label="Faye home">
+                <img src="assets/logo.png" alt="Faye" width="28">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Let's talk</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== Hero (Variant 2: Minimal Grid) ===================== -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-tags" data-reveal>
+                <span>Brand Design</span>
+                <span class="dot" aria-hidden="true"></span>
+                <span>Packing Design</span>
+            </div>
+            <h1 class="hero-title" data-reveal>portfolio</h1>
+        </div>
+        <div class="hero-visual-path" aria-hidden="true">
+            <img src="assets/work-1.jpg" class="hero-path-img" style="z-index:1;" alt="">
+            <img src="assets/work-2.jpg" class="hero-path-img" style="z-index:2;" alt="">
+            <img src="assets/work-3.jpg" class="hero-path-img" style="z-index:3;" alt="">
+            <img src="assets/work-4.jpg" class="hero-path-img" style="z-index:4;" alt="">
+            <img src="assets/work-5.jpg" class="hero-path-img" style="z-index:5;" alt="">
+            <img src="assets/work-6.jpg" class="hero-path-img" style="z-index:6;" alt="">
+            <img src="assets/work-7.jpg" class="hero-path-img" style="z-index:7;" alt="">
+            <img src="assets/work-8.jpg" class="hero-path-img" style="z-index:8;" alt="">
+            <img src="assets/work-9.jpg" class="hero-path-img" style="z-index:9;" alt="">
+            <img src="assets/work-10.jpg" class="hero-path-img" style="z-index:10;" alt="">
+            <img src="assets/work-11.jpg" class="hero-path-img" style="z-index:11;" alt="">
+            <img src="assets/work-12.jpg" class="hero-path-img" style="z-index:12;" alt="">
+        </div>
+    </section>
+
+    <!-- ===================== All Works ===================== -->
+    <section class="works" id="works">
+        <div class="section-header" data-reveal>
+            <h2 class="section-title">ALL WORKS</h2>
+        </div>
+        <div class="works-grid">
+            <a href="true-taste.html" class="work-card-link" aria-label="查看寻味密码——酱料系列详情">
+                <div class="work-card" data-reveal>
+                    <img src="assets/work-1.jpg" alt="寻味密码——酱料系列" class="work-card-img" loading="lazy">
+                    <div class="work-card-overlay">
+                        <h3 class="work-card-title">寻味密码——酱料系列</h3>
+                        <p class="work-card-category">罐装食品系列包装设计</p>
+                    </div>
+                </div>
+            </a>
+            <a href="tangyan.html" class="work-card-link" aria-label="查看棠颜如初——即食黄精详情">
+                <div class="work-card" data-reveal>
+                    <img src="assets/work-2.jpg" alt="棠颜如初——即食黄精" class="work-card-img" loading="lazy">
+                    <div class="work-card-overlay">
+                        <h3 class="work-card-title">棠颜如初——即食黄精</h3>
+                        <p class="work-card-category">滋补品轻量化礼盒包装设计</p>
+                    </div>
+                </div>
+            </a>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-3.jpg" alt="寻味密码 海盐咸味燕麦片" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码 海盐咸味燕麦片</h3>
+                    <p class="work-card-category">包装设计</p>
+                </div>
+            </div>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-8.jpg" alt="玫瑰茉莉花桂花栗子 鲜花饼" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">玫瑰|茉莉花|桂花栗子 鲜花饼</h3>
+                    <p class="work-card-category">系列包装设计</p>
+                </div>
+            </div>
+            <a href="jiangxin.html" class="work-card-link" aria-label="查看酱心臻礼2026春节礼盒详情">
+                <div class="work-card" data-reveal>
+                    <img src="assets/work-4.jpg" alt="酱心臻礼2026春节礼盒" class="work-card-img" loading="lazy">
+                    <div class="work-card-overlay">
+                        <h3 class="work-card-title">"酱心臻礼"2026春节礼盒</h3>
+                        <p class="work-card-category">节日礼盒设计</p>
+                    </div>
+                </div>
+            </a>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-9.jpg" alt="寻味密码 大果粒蓝莓酱" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码 大果粒蓝莓酱</h3>
+                    <p class="work-card-category">包装设计</p>
+                </div>
+            </div>
+            <a href="yueguang.html" class="work-card-link" aria-label="查看月光能量站2025中秋礼盒详情">
+                <div class="work-card" data-reveal>
+                    <img src="assets/work-5.jpg" alt="月光能量站2025中秋礼盒" class="work-card-img" loading="lazy">
+                    <div class="work-card-overlay">
+                        <h3 class="work-card-title">"月光能量站"2025中秋礼盒</h3>
+                        <p class="work-card-category">节日礼盒设计</p>
+                    </div>
+                </div>
+            </a>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-10.jpg" alt="寻味密码 颗粒开心果酱" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码 颗粒开心果酱</h3>
+                    <p class="work-card-category">标签设计</p>
+                </div>
+            </div>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-6.jpg" alt="棠颜如初——玉灵小罐膏" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">棠颜如初——玉灵小罐膏</h3>
+                    <p class="work-card-category">滋补品礼盒包装设计</p>
+                </div>
+            </div>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-11.jpg" alt="寻味密码 玫瑰腰果酱" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码 玫瑰腰果酱</h3>
+                    <p class="work-card-category">标签设计</p>
+                </div>
+            </div>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-7.jpg" alt="寻味密码——牛奶黄油葱油饼" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码——牛奶黄油葱油饼</h3>
+                    <p class="work-card-category">包装设计</p>
+                </div>
+            </div>
+            <div class="work-card" data-reveal>
+                <img src="assets/work-12.jpg" alt="寻味密码 粗研扁桃仁酱" class="work-card-img" loading="lazy">
+                <div class="work-card-overlay">
+                    <h3 class="work-card-title">寻味密码 粗研扁桃仁酱</h3>
+                    <p class="work-card-category">标签设计</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Collection (Horizontal Gallery + Values) ===================== -->
+    <section class="collection" id="collection">
+        <!-- Horizontal Gallery (24 static items: 12 works duplicated for seamless loop) -->
+        <div class="gallery-container">
+            <div class="gallery-track">
+                <!-- First set: 12 works -->
+                <a href="true-taste.html" class="gallery-item-link" aria-label="查看寻味密码——酱料系列详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-1.jpg" alt="寻味密码——酱料系列" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">寻味密码——酱料系列</span>
+                            <span class="gallery-item-category">罐装食品系列包装设计</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="tangyan.html" class="gallery-item-link" aria-label="查看棠颜如初——即食黄精详情">
+                    <div class="gallery-item gallery-portrait">
+                        <img src="assets/work-2.jpg" alt="棠颜如初——即食黄精" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">棠颜如初——即食黄精</span>
+                            <span class="gallery-item-category">滋补品轻量化礼盒包装设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-3.jpg" alt="寻味密码 海盐咸味燕麦片" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 海盐咸味燕麦片</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-8.jpg" alt="玫瑰茉莉花桂花栗子 鲜花饼" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">玫瑰|茉莉花|桂花栗子 鲜花饼</span>
+                        <span class="gallery-item-category">系列包装设计</span>
+                    </div>
+                </div>
+                <a href="jiangxin.html" class="gallery-item-link" aria-label="查看酱心臻礼2026春节礼盒详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-4.jpg" alt="酱心臻礼2026春节礼盒" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">"酱心臻礼"2026春节礼盒</span>
+                            <span class="gallery-item-category">节日礼盒设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-9.jpg" alt="寻味密码 大果粒蓝莓酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 大果粒蓝莓酱</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <a href="yueguang.html" class="gallery-item-link" aria-label="查看月光能量站2025中秋礼盒详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-5.jpg" alt="月光能量站2025中秋礼盒" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">"月光能量站"2025中秋礼盒</span>
+                            <span class="gallery-item-category">节日礼盒设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-10.jpg" alt="寻味密码 颗粒开心果酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 颗粒开心果酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-6.jpg" alt="棠颜如初——玉灵小罐膏" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">棠颜如初——玉灵小罐膏</span>
+                        <span class="gallery-item-category">滋补品礼盒包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-11.jpg" alt="寻味密码 玫瑰腰果酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 玫瑰腰果酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-7.jpg" alt="寻味密码——牛奶黄油葱油饼" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码——牛奶黄油葱油饼</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-12.jpg" alt="寻味密码 粗研扁桃仁酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 粗研扁桃仁酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+                <!-- Second set: duplicate 12 works for seamless infinite loop -->
+                <a href="true-taste.html" class="gallery-item-link" aria-label="查看寻味密码——酱料系列详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-1.jpg" alt="寻味密码——酱料系列" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">寻味密码——酱料系列</span>
+                            <span class="gallery-item-category">罐装食品系列包装设计</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="tangyan.html" class="gallery-item-link" aria-label="查看棠颜如初——即食黄精详情">
+                    <div class="gallery-item gallery-portrait">
+                        <img src="assets/work-2.jpg" alt="棠颜如初——即食黄精" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">棠颜如初——即食黄精</span>
+                            <span class="gallery-item-category">滋补品轻量化礼盒包装设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-3.jpg" alt="寻味密码 海盐咸味燕麦片" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 海盐咸味燕麦片</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-8.jpg" alt="玫瑰茉莉花桂花栗子 鲜花饼" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">玫瑰|茉莉花|桂花栗子 鲜花饼</span>
+                        <span class="gallery-item-category">系列包装设计</span>
+                    </div>
+                </div>
+                <a href="jiangxin.html" class="gallery-item-link" aria-label="查看酱心臻礼2026春节礼盒详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-4.jpg" alt="酱心臻礼2026春节礼盒" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">"酱心臻礼"2026春节礼盒</span>
+                            <span class="gallery-item-category">节日礼盒设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-9.jpg" alt="寻味密码 大果粒蓝莓酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 大果粒蓝莓酱</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <a href="yueguang.html" class="gallery-item-link" aria-label="查看月光能量站2025中秋礼盒详情">
+                    <div class="gallery-item gallery-landscape">
+                        <img src="assets/work-5.jpg" alt="月光能量站2025中秋礼盒" loading="lazy">
+                        <div class="gallery-item-overlay">
+                            <span class="gallery-item-title">"月光能量站"2025中秋礼盒</span>
+                            <span class="gallery-item-category">节日礼盒设计</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-10.jpg" alt="寻味密码 颗粒开心果酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 颗粒开心果酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-6.jpg" alt="棠颜如初——玉灵小罐膏" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">棠颜如初——玉灵小罐膏</span>
+                        <span class="gallery-item-category">滋补品礼盒包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-11.jpg" alt="寻味密码 玫瑰腰果酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 玫瑰腰果酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-landscape">
+                    <img src="assets/work-7.jpg" alt="寻味密码——牛奶黄油葱油饼" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码——牛奶黄油葱油饼</span>
+                        <span class="gallery-item-category">包装设计</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-portrait">
+                    <img src="assets/work-12.jpg" alt="寻味密码 粗研扁桃仁酱" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <span class="gallery-item-title">寻味密码 粗研扁桃仁酱</span>
+                        <span class="gallery-item-category">标签设计</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Values -->
+        <div class="values" data-reveal>
+            <p class="values-label">( VALUES )</p>
+            <div class="values-divider"></div>
+            <p class="values-text">
+                Keep learning / Value communication / Enjoy work
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================== About (Variant 1: Organic Editorial) ===================== -->
+    <section class="about" id="about">
+        <div class="container about-inner">
+            <div class="about-grid">
+                <div class="about-left" data-reveal>
+                    <h2 class="about-name">Faye</h2>
+                    <span class="about-name-mark" aria-hidden="true"></span>
+                    <p class="about-skills">包装设计 ｜ 品牌VI ｜ 视觉设计</p>
+                </div>
+                <div class="about-right">
+                    <p class="about-lead" data-reveal>
+                        以细致、专业与共情能力参与项目，也以理性判断与创意表达，为品牌提供系统性的解决方案。
+                    </p>
+                    <p class="about-text" data-reveal>
+                        不盲目追求形式感，也不放弃细腻的表达。
+                    </p>
+                    <div class="about-quote" data-reveal>
+                        设计是与品牌共同生长的过程——在理性与感性之间，找到恰如其分的表达。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organic wave divider: about -> footer -->
+        <div class="wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,56 C240,104 500,14 760,48 C1020,82 1240,28 1440,60 L1440,110 L0,110 Z" fill="#394118"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ===================== Footer (Variant 1: Organic Editorial) ===================== -->
+    <footer class="footer" id="contact">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="assets/logo-feather.png" alt="Faye">
+                <p class="footer-brand-text">
+                    Creative designer crafting visual identities and packaging that balances aesthetics with purpose.
+                </p>
+            </div>
+
+            <div class="footer-contact">
+                <p class="footer-label">Contact</p>
+                <div class="footer-contact-list">
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>173-6008-0657</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <a href="mailto:1677996871@qq.com">1677996871@qq.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Chengdu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-cta">
+                <p class="footer-cta-text">Let's talk</p>
+                <p class="footer-cta-sub">期待与有意思的项目相遇</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Faye. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            'use strict';
+
+            /* --- Navbar scroll effect --- */
+            var navbar = document.getElementById('navbar');
+            function onScroll() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            /* --- Mobile nav toggle --- */
+            var toggle = document.getElementById('navToggle');
+            var links = document.getElementById('navLinks');
+            if (toggle && links) {
+                toggle.addEventListener('click', function() {
+                    var open = links.classList.toggle('open');
+                    toggle.classList.toggle('open', open);
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+                links.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            /* --- Scroll reveal via IntersectionObserver + classList --- */
+            var revealElements = document.querySelectorAll('[data-reveal]');
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+                revealElements.forEach(function(el) { observer.observe(el); });
+            } else {
+                revealElements.forEach(function(el) { el.classList.add('revealed'); });
+            }
+
+            /* --- Smooth scroll for in-page anchors --- */
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    var id = this.getAttribute('href');
+                    if (id.length <= 1) return;
+                    var target = document.querySelector(id);
+                    if (!target) return;
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            /* --- Hero cursor trail of work images --- */
+            (function initHeroTrail() {
+                var hero = document.querySelector('.hero');
+                var imgs = document.querySelectorAll('.hero-path-img');
+                if (!hero || imgs.length === 0) return;
+
+                var lastX = -9999;
+                var lastY = -9999;
+                var poolIndex = 0;
+                var minDist = 55;
+                var activeTimeouts = [];
+
+                function random(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                function spawn(x, y) {
+                    var rect = hero.getBoundingClientRect();
+                    var img = imgs[poolIndex % imgs.length];
+                    poolIndex++;
+
+                    var rot = random(-10, 10);
+                    img.style.setProperty('--rot', rot + 'deg');
+                    img.style.left = (x - rect.left - img.offsetWidth / 2) + 'px';
+                    img.style.top = (y - rect.top - img.offsetHeight / 2) + 'px';
+
+                    img.classList.add('active');
+                    var t = setTimeout(function() {
+                        img.classList.remove('active');
+                    }, 2200);
+                    activeTimeouts.push(t);
+                }
+
+                hero.addEventListener('mousemove', function(e) {
+                    var dx = e.clientX - lastX;
+                    var dy = e.clientY - lastY;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist >= minDist) {
+                        spawn(e.clientX, e.clientY);
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                    }
+                });
+
+                hero.addEventListener('mouseenter', function(e) {
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                    spawn(e.clientX, e.clientY);
+                });
+
+                hero.addEventListener('mouseleave', function() {
+                    activeTimeouts.forEach(function(t) { clearTimeout(t); });
+                    activeTimeouts = [];
+                    imgs.forEach(function(img) { img.classList.remove('active'); });
+                    lastX = -9999;
+                    lastY = -9999;
+                });
+            })();
+        })();
+    </script>
+
+    <style>
+        /* ============================================================
+           FAYE — Variant Combo: 组合方案
+           Hero/Nav: Variant 2 (Earth Rhythm / Minimal Grid)
+           Works: Original 3-column grid + Natural Healing palette
+           About/Footer: Variant 1 (Natural Narrative / Organic Editorial)
+           ============================================================ */
+
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Light'), local('OPPOSans L');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Regular'), local('OPPOSans R');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Medium'), local('OPPOSans M');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Bold'), local('OPPOSans B');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Heavy'), local('OPPOSans H');
+            font-weight: 900;
+        }
+
+        :root {
+            --sage: #B1CAC4;
+            --sage-light: #D4E2DE;
+            --sage-lighter: #E8F0ED;
+            --cream: #F5E6C2;
+            --cream-light: #FAF1D9;
+            --cream-dark: #EDD9A8;
+            --gold: #B59F22;
+            --gold-light: #CBB544;
+            --gold-dark: #9A8516;
+            --olive: #394118;
+            --olive-light: #4F5A28;
+            --olive-dark: #2A300F;
+            --bg: #FAF8F3;
+            --bg-alt: #F2EFE8;
+
+            --font: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 24px;
+            --radius-3xl: 32px;
+
+            --shadow-rest: 0 1px 3px rgba(57, 65, 24, 0.06);
+            --shadow-hover: 0 10px 30px rgba(57, 65, 24, 0.14);
+            --shadow-lg: 0 20px 60px rgba(57, 65, 24, 0.10);
+
+            --maxw: 1320px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--olive);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding-left: 22px;
+            padding-right: 22px;
+        }
+
+        /* ========== Scroll Reveal ========== */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== Navigation (Variant 2: Minimal Grid) ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 1.25rem;
+            background: transparent;
+            transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(250, 248, 243, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(57, 65, 24, 0.08);
+            padding: 0.875rem 1.25rem;
+        }
+
+        .nav-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo img {
+            width: 28px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--olive);
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.5rem 1.25rem;
+            border: 1.5px solid var(--olive);
+            border-radius: var(--radius-sm);
+            color: var(--olive);
+            transition: background 0.25s ease, color 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: var(--olive);
+            color: var(--cream);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--olive);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ========== Hero (Variant 2: Minimal Grid) ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 7rem 1.25rem 4rem;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 78% 22%, rgba(245, 230, 194, 0.55), transparent 42%),
+                radial-gradient(circle at 18% 88%, rgba(177, 202, 196, 0.22), transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            align-items: end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tags {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-tags .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: inline-block;
+        }
+
+        .hero-desc {
+            grid-column: 1;
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--olive-light);
+            max-width: 420px;
+            padding-bottom: 0;
+        }
+
+        .hero-title {
+            grid-column: 1 / -1;
+            font-size: clamp(5rem, 14vw, 12rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 0.85;
+            color: var(--olive);
+            text-transform: lowercase;
+        }
+
+        .hero-visual-path {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        .hero-path-img {
+            position: absolute;
+            width: 11vw;
+            min-width: 90px;
+            max-width: 150px;
+            height: auto;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(0.65) rotate(var(--rot, 0deg));
+            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 16px 44px rgba(57, 65, 24, 0.20);
+            will-change: opacity, transform;
+            pointer-events: none;
+        }
+
+        .hero-path-img.active {
+            opacity: 1;
+            transform: scale(1) rotate(var(--rot, 0deg));
+        }
+
+        /* ========== Section Title (Original style) ========== */
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--olive);
+        }
+
+        /* ========== Selected Work (Original layout + Natural Healing palette) ========== */
+        .works {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Staggered reveal for work cards */
+        .works-grid .work-card:nth-child(3n+2) { transition-delay: 0.08s; }
+        .works-grid .work-card:nth-child(3n+3) { transition-delay: 0.16s; }
+
+        /* ========== Work Card (full fade overlay on hover) ========== */
+        .work-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            background: var(--bg-alt);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(57, 65, 24, 0.10);
+        }
+
+        .work-card-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .work-card:hover .work-card-img {
+            transform: scale(1.05);
+        }
+
+        .work-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(57, 65, 24, 0.78) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+
+        .work-card:hover .work-card-overlay {
+            opacity: 1;
+        }
+
+        .work-card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 4px;
+        }
+
+        .work-card-category {
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .works-more {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .works-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--olive);
+            text-decoration: none;
+            padding: 14px 36px;
+            border: 1px solid rgba(57, 65, 24, 0.10);
+            border-radius: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .works-more-link:hover {
+            background: var(--olive);
+            color: var(--cream);
+            border-color: var(--olive);
+        }
+
+        .works-more-link .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .works-more-link:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ========== Collection (Horizontal Gallery + Values) ========== */
+        .collection {
+            padding: 60px 0 40px;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 16px;
+            padding: 20px 0;
+            align-items: flex-start;
+            width: max-content;
+            will-change: transform;
+            animation: scrollLeft 60s linear infinite;
+        }
+
+        .gallery-container:hover .gallery-track {
+            animation-play-state: paused;
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 10px 36px rgba(57, 65, 24, 0.08);
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 50px rgba(57, 65, 24, 0.14);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            display: block;
+            width: auto;
+            max-width: none;
+            object-fit: cover;
+        }
+
+        .gallery-item.gallery-landscape img {
+            height: 180px;
+        }
+
+        .gallery-item.gallery-portrait img {
+            height: 240px;
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(57, 65, 24, 0.70) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 4px;
+        }
+
+        .gallery-item-category {
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+        }
+
+        @keyframes scrollLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Values Section */
+        .values {
+            padding: 80px 24px 40px;
+            text-align: center;
+        }
+
+        .values-label {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--olive-light);
+            margin-bottom: 24px;
+        }
+
+        .values-divider {
+            width: 1px;
+            height: 32px;
+            background: rgba(57, 65, 24, 0.10);
+            margin: 0 auto 24px;
+        }
+
+        .values-text {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            color: var(--olive);
+            line-height: 1.5;
+            letter-spacing: 1px;
+        }
+
+        /* ========== All Works (Original layout + Natural Healing palette) ========== */
+        .full-works {
+            padding: 80px 24px;
+            background: var(--cream);
+        }
+
+        .full-works-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .full-works-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .full-works-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .full-works-grid .work-card:nth-child(3n+2) { transition-delay: 0.08s; }
+        .full-works-grid .work-card:nth-child(3n+3) { transition-delay: 0.16s; }
+
+        /* ========== About (Variant 1: Organic Editorial) ========== */
+        .about {
+            background: var(--cream);
+            position: relative;
+        }
+
+        .about-inner {
+            padding: 90px 0 70px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .about-left {
+            position: static;
+        }
+
+        .about-name {
+            font-size: clamp(3.4rem, 7vw, 5.6rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--olive);
+            margin-bottom: 26px;
+        }
+
+        .about-name-mark {
+            display: block;
+            width: 64px;
+            height: 3px;
+            border-radius: 3px;
+            background: var(--gold);
+            margin-top: -18px;
+            margin-bottom: 28px;
+        }
+
+        .about-skills {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--olive-light);
+            letter-spacing: 0.04em;
+        }
+
+        .about-right {
+            padding-top: 10px;
+        }
+
+        .about-lead {
+            font-size: 1.18rem;
+            line-height: 2;
+            color: var(--olive);
+            font-weight: 400;
+            margin-bottom: 26px;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--olive-light);
+            font-weight: 400;
+        }
+
+        .about-quote {
+            margin-top: 34px;
+            padding: 24px 28px;
+            border-left: 3px solid var(--gold);
+            background: var(--cream-light);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: var(--olive);
+            font-weight: 500;
+        }
+
+        /* Organic wave divider */
+        .wave {
+            display: block;
+            width: 100%;
+            height: 64px;
+            line-height: 0;
+        }
+        .wave svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ========== Footer (Variant 1: Organic Editorial) ========== */
+        .footer {
+            background: var(--olive);
+            color: var(--cream-light);
+            position: relative;
+        }
+
+        .footer-top {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 70px 22px 44px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .footer-brand img {
+            width: 36px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.92;
+            margin-bottom: 22px;
+        }
+
+        .footer-brand-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(245, 230, 194, 0.7);
+            max-width: 240px;
+        }
+
+        .footer-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+        }
+
+        .footer-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.92rem;
+            color: rgba(245, 230, 194, 0.85);
+        }
+
+        .footer-contact-item svg {
+            flex-shrink: 0;
+            color: var(--gold-light);
+        }
+
+        .footer-contact-item a {
+            color: rgba(245, 230, 194, 0.85);
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-cta {
+            text-align: left;
+        }
+
+        .footer-cta-text {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--cream-light);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-cta-sub {
+            font-size: 0.86rem;
+            color: rgba(245, 230, 194, 0.6);
+            letter-spacing: 0.04em;
+        }
+
+        .footer-bottom {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 24px 22px 34px;
+            border-top: 1px solid rgba(245, 230, 194, 0.12);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.74rem;
+            color: rgba(245, 230, 194, 0.45);
+            letter-spacing: 0.06em;
+        }
+
+        /* ========== Responsive: 768px ========== */
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+
+            .navbar {
+                padding: 1.25rem 2rem;
+            }
+
+            .navbar.scrolled {
+                padding: 0.875rem 2rem;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .nav-links {
+                gap: 2.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.875rem;
+                letter-spacing: 0.02em;
+            }
+
+            .hero {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                grid-column: 2;
+                text-align: right;
+                align-self: end;
+            }
+
+            .hero-tags {
+                font-size: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .works,
+            .full-works {
+                padding: 6rem 2rem;
+            }
+
+            .section-header,
+            .full-works-header {
+                margin-bottom: 60px;
+            }
+
+            .works-grid,
+            .full-works-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+
+            .collection {
+                padding: 80px 0 50px;
+            }
+
+            .gallery-item.gallery-landscape img {
+                height: 240px;
+            }
+
+            .gallery-item.gallery-portrait img {
+                height: 320px;
+            }
+
+            .values {
+                padding: 60px 24px 30px;
+            }
+
+            .about-inner {
+                padding: 130px 0 110px;
+            }
+
+            .about {
+                padding: 0;
+            }
+
+            .footer-top {
+                padding: 96px 32px 56px;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .footer-cta {
+                grid-column: 1 / -1;
+                text-align: left;
+            }
+
+            .footer-bottom {
+                padding: 28px 32px 40px;
+            }
+
+            .wave {
+                height: 110px;
+            }
+        }
+
+        /* ========== Responsive: 1024px ========== */
+        @media (min-width: 1024px) {
+            .works,
+            .full-works {
+                padding: 120px 48px;
+            }
+
+            .section-header,
+            .full-works-header {
+                margin-bottom: 80px;
+            }
+
+            .works-grid,
+            .full-works-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 28px;
+            }
+
+            .collection {
+                padding: 100px 0 60px;
+            }
+
+            .gallery-item.gallery-landscape img {
+                height: 300px;
+            }
+
+            .gallery-item.gallery-portrait img {
+                height: 400px;
+            }
+
+            .values {
+                padding: 80px 24px 40px;
+            }
+
+            .about-grid {
+                grid-template-columns: 0.9fr 1.1fr;
+                gap: 80px;
+            }
+
+            .about-left {
+                position: sticky;
+                top: 120px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 48px;
+            }
+
+            .footer-cta {
+                grid-column: auto;
+                text-align: right;
+            }
+        }
+
+        /* Project detail page link wrappers */
+        .work-card-link,
+        .gallery-item-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .work-card-link:focus-visible,
+        .gallery-item-link:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Touch: always show overlay */
+        @media (hover: none) and (pointer: coarse) {
+            .work-card-overlay {
+                opacity: 1;
+                background: linear-gradient(to top,
+                    rgba(57, 65, 24, 0.85) 0%,
+                    rgba(57, 65, 24, 0) 55%);
+            }
+
+            .gallery-item-overlay {
+                opacity: 1;
+                background: linear-gradient(to top,
+                    rgba(57, 65, 24, 0.80) 0%,
+                    rgba(57, 65, 24, 0) 55%);
+            }
+        }
+
+        /* ========== Reduced Motion ========== */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            [data-reveal] {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .work-card img,
+            .work-card-overlay,
+            .work-card,
+            .gallery-track {
+                transition: none;
+                animation: none;
+            }
+
+            .work-card-overlay,
+            .gallery-item-overlay {
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>

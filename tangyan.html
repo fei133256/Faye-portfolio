@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棠颜如初 — Faye Portfolio</title>
+    <meta name="description" content="棠颜如初——新中式轻奢滋补品牌视觉与包装设计案例">
+    <style>
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Light'), local('OPPOSans L');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Regular'), local('OPPOSans R');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Medium'), local('OPPOSans M');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Bold'), local('OPPOSans B');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'OPPOSans';
+            src: local('OPPOSans-Heavy'), local('OPPOSans H');
+            font-weight: 900;
+        }
+
+        :root {
+            --sage: #B1CAC4;
+            --sage-light: #D4E2DE;
+            --cream: #F5E6C2;
+            --cream-light: #FAF1D9;
+            --gold: #B59F22;
+            --gold-light: #CBB544;
+            --olive: #394118;
+            --olive-light: #4F5A28;
+            --bg: #FAF8F3;
+            --bg-alt: #F2EFE8;
+            --font: 'OPPOSans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --maxw: 1320px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--olive);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 1.25rem;
+            background: rgba(250, 248, 243, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 1px 0 rgba(57, 65, 24, 0.08);
+            transition: padding 0.35s ease;
+        }
+
+        .nav-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-logo img {
+            width: 28px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-back {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--olive);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--gold);
+        }
+
+        /* Hero */
+        .project-hero {
+            padding: 7rem 1.25rem 3rem;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(245, 230, 194, 0.55), transparent 42%),
+                radial-gradient(circle at 12% 86%, rgba(177, 202, 196, 0.22), transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-visual {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(57, 65, 24, 0.10);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--olive);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--olive-light);
+            line-height: 1.7;
+            max-width: 520px;
+        }
+
+        /* Content */
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 6rem;
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--olive);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+        }
+
+        .section-title-en {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--olive-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.85;
+        }
+
+        .section-body {
+            color: var(--olive);
+            line-height: 1.9;
+        }
+
+        .section-body p {
+            margin-bottom: 1.1rem;
+        }
+
+        .section-body strong {
+            font-weight: 600;
+            color: var(--olive);
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-list li {
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .highlight-box {
+            background: var(--cream-light);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 500;
+            color: var(--olive);
+            line-height: 1.85;
+        }
+
+        /* Manual image gallery */
+        .manual-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .gallery-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .manual-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .manual-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 36px rgba(57, 65, 24, 0.08);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--olive);
+            color: var(--cream-light);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: rgba(245, 230, 194, 0.55);
+            letter-spacing: 0.06em;
+        }
+
+        .footer a {
+            color: var(--gold-light);
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--cream);
+        }
+
+        @media (min-width: 768px) {
+            .project-hero {
+                padding: 9rem 2rem 4rem;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 4rem;
+            }
+
+            .content {
+                padding: 5rem 2rem 7rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" aria-label="Project navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="返回首页">
+                <img src="assets/logo.png" alt="Faye" width="28">
+            </a>
+            <a href="index.html" class="nav-back">
+                <span aria-hidden="true">&larr;</span> 返回首页
+            </a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-inner">
+            <div class="hero-visual">
+                <img src="assets/tangyan/tang-01.jpg" alt="棠颜如初——新中式轻奢滋补品牌视觉与包装设计展示">
+            </div>
+            <div class="hero-meta">
+                <span class="hero-label">Brand &amp; Packaging Design</span>
+                <h1 class="hero-title">棠颜如初</h1>
+                <p class="hero-subtitle">新中式轻奢滋补品牌视觉与包装设计。以宋韵美学为底蕴，为专注女性气血养护的药食同源品牌打造完整视觉识别系统与便携式包装。</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="section" aria-labelledby="overview-title">
+            <h2 id="overview-title" class="section-title">
+                项目概况与品牌定位
+            </h2>
+            <p class="section-lead">以宋韵美学为底蕴，为专注女性气血养护的药食同源品牌打造完整视觉识别系统与便携式包装。</p>
+            <div class="section-body">
+                <ul class="info-list">
+                    <li><strong>项目名称：</strong>棠颜如初——新中式轻奢滋补品牌视觉与包装设计。</li>
+                    <li><strong>品牌定位：</strong>专注女性容颜与气血养护的新中式轻奢滋补品牌。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="context-title">
+            <h2 id="context-title" class="section-title">
+                项目背景
+                <span class="section-title-en">Project Context</span>
+            </h2>
+            <div class="section-body">
+                <ul class="info-list">
+                    <li><strong>商业背景：</strong>滋补品市场正经历从传统“重滋补”向即食化、零食化的“轻养生”生活方式转型。</li>
+                    <li><strong>目标受众：</strong>核心瞄准25-45岁的都市精致女性，满足她们由内而外、温和可持续的气血养护需求。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="strategy-title">
+            <h2 id="strategy-title" class="section-title">
+                设计策略
+                <span class="section-title-en">Design Strategy</span>
+            </h2>
+            <div class="section-body">
+                <p>以宋韵美学为底蕴，通过独特的中国传统色建立记忆点，区别于传统滋补品牌的浓郁配色，视觉上以现代审美结合新中式元素，传达“温润、诗意、雅致"的品牌调性。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="challenge-title">
+            <h2 id="challenge-title" class="section-title">
+                设计目标
+                <span class="section-title-en">Design Challenge</span>
+            </h2>
+            <p class="section-lead">“东方轻滋补，棠颜护如初”。</p>
+            <div class="section-body">
+                <p>降低滋补门槛，让产品自然融入女性的高频日常消费场景。</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="visual-title">
+            <h2 id="visual-title" class="section-title">
+                核心视觉策略
+                <span class="section-title-en">Visual Strategy</span>
+            </h2>
+            <div class="section-body">
+                <p><strong>Logo 推演：</strong>专注草图设计的几何结构与图形美感，不增加多余的质感与立体细节。图形概念巧妙融合了女性侧影，并以“棠”字与海棠花为形态基础。整体借用中式花窗的轮廓，通过极简线条重构出对称平衡的东方韵致。</p>
+                <p><strong>色彩体系：</strong>选用低饱和度的自然色系。提取了象征面色红润的“渥赭”、温婉如诗的“十样锦”与清逸如宋瓷的“石青”作为中国传统色搭配。三色交融，勾勒出温润、雅致的轻奢底色。</p>
+                <p><strong>包装形态：</strong>包装设计极度强调日常化与便携性。针对“玉灵小罐膏”和“即食黄精”，均采用了独立小包装的模块化方案。这种设计支持开袋即食与单次精准用量，旨在让内养如日常饮水般便捷。</p>
+                <p><strong>视觉呈现：</strong>品牌整体承袭宋韵美学之雅。在后期的商业产品摄影与静物陈列把控上，坚持极简克制的美学标准。打破传统滋补品同质化竞争，在视觉上避开同类产品常见的浓重国风或网红风。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="manual-gallery" aria-labelledby="manual-title">
+        <p id="manual-title" class="gallery-title">Brand Visual &amp; Packaging</p>
+        <div class="manual-grid">
+            <img src="assets/tangyan/tang-01.jpg" alt="棠颜如初 第 1 页" loading="lazy">
+            <img src="assets/tangyan/tang-02.jpg" alt="棠颜如初 第 2 页" loading="lazy">
+            <img src="assets/tangyan/tang-03.jpg" alt="棠颜如初 第 3 页" loading="lazy">
+            <img src="assets/tangyan/tang-04.jpg" alt="棠颜如初 第 4 页" loading="lazy">
+            <img src="assets/tangyan/tang-05.jpg" alt="棠颜如初 第 5 页" loading="lazy">
+            <img src="assets/tangyan/tang-06.jpg" alt="棠颜如初 第 6 页" loading="lazy">
+            <img src="assets/tangyan/tang-07.jpg" alt="棠颜如初 第 7 页" loading="lazy">
+            <img src="assets/tangyan/tang-08.jpg" alt="棠颜如初 第 8 页" loading="lazy">
+            <img src="assets/tangyan/tang-09.jpg" alt="棠颜如初 第 9 页" loading="lazy">
+            <img src="assets/tangyan/tang-10.jpg" alt="棠颜如初 第 10 页" loading="lazy">
+            <img src="assets/tangyan/tang-11.jpg" alt="棠颜如初 第 11 页" loading="lazy">
+            <img src="assets/tangyan/tang-12.jpg" alt="棠颜如初 第 12 页" loading="lazy">
+            <img src="assets/tangyan/tang-13.jpg" alt="棠颜如初 第 13 页" loading="lazy">
+            <img src="assets/tangyan/tang-14.jpg" alt="棠颜如初 第 14 页" loading="lazy">
+            <img src="assets/tangyan/tang-15.jpg" alt="棠颜如初 第 15 页" loading="lazy">
+            <img src="assets/tangyan/tang-16.jpg" alt="棠颜如初 第 16 页" loading="lazy">
+            <img src="assets/tangyan/tang-17.jpg" alt="棠颜如初 第 17 页" loading="lazy">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Faye. <a href="index.html">返回首页</a></p>
+    </footer>
+
+</body>
+</html>
